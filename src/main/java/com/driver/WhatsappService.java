@@ -28,12 +28,13 @@ public class WhatsappService {
 
     public Group createGroup(List<User> users) {
         String groupName = "";
+        Group group=null;
         if (users.size() < 2) {
             throw new IllegalArgumentException("Creation of group not Possible");
         } else if (users.size() > 2) {
             String GroupName = "Group " + wr.getCustomGroupCount()+1;
             if (!wr.getGroupUserMap().containsKey(GroupName)) {
-                Group group = new Group(GroupName, users.size());
+                group = new Group(GroupName, users.size());
                 wr.getGroupUserMap().put(group,users);
                 wr.setCustomGroupCount(wr.getCustomGroupCount()+1);
                 wr.getAdminMap().put(group,users.get(0));
@@ -46,7 +47,7 @@ public class WhatsappService {
         else if (users.size() == 2) {
             String GroupName = users.get(1).getName();
             if (!wr.getGroupUserMap().containsKey(GroupName)) {
-                Group group = new Group(GroupName, users.size());
+                group = new Group(GroupName, users.size());
                 wr.getGroupUserMap().put(group,users);
                 wr.getAdminMap().put(group,users.get(0));
             }
@@ -54,7 +55,7 @@ public class WhatsappService {
                 throw new IllegalArgumentException("Invalid group");
             }
         }
-        return null;
+        return group;
 
     }
     public int createMessage(String content) {
