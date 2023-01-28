@@ -58,8 +58,7 @@ public class WhatsappService {
 
     }
     public int createMessage(String content) {
-        Date date=new Date();
-        Message message=new Message(wr.getMessageId()+1, content,date);
+        Message message=new Message(wr.getMessageId()+1,content,new java.util.Date());
         wr.getMessageHashMap().put(wr.getMessageId()+1,message);
         wr.setMessageId(wr.getMessageId()+1);
         return wr.getMessageId();
