@@ -3,6 +3,7 @@ package com.driver;
 import net.bytebuddy.asm.Advice;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
@@ -57,7 +58,8 @@ public class WhatsappService {
 
     }
     public int createMessage(String content) {
-        Message message=new Message(wr.getMessageId()+1, content,new Date());
+        Date date=new Date();
+        Message message=new Message(wr.getMessageId()+1, content,date);
         wr.getMessageHashMap().put(wr.getMessageId()+1,message);
         wr.setMessageId(wr.getMessageId()+1);
         return wr.getMessageId();
